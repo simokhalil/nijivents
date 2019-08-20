@@ -1,14 +1,14 @@
-import createSagaMiddleware from "redux-saga";
-import { applyMiddleware, compose, createStore } from "redux";
+import createSagaMiddleware from 'redux-saga';
+import { applyMiddleware, compose, createStore } from 'redux';
 
-import rootReducer from "../reducers";
-import sagas from "../sagas";
+import rootReducer from '../reducers';
+import sagas from '../sagas';
 
 // add the saga middleware
 const sagaMiddleware = createSagaMiddleware();
 
 // add the middlewares
-let middlewares = [
+const middlewares = [
   sagaMiddleware,
 ];
 
@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === 'development') {
 // create the store
 const store = createStore(
   rootReducer,
-  compose(applyMiddleware(...middlewares))
+  compose(applyMiddleware(...middlewares)),
 );
 
 sagaMiddleware.run(sagas);

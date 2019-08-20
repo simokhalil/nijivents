@@ -1,6 +1,25 @@
 import React, { Component } from 'react';
-import { Button, Input, Layout } from 'react-native-ui-kitten';
+import { Button, Input } from 'react-native-ui-kitten';
 import { ImageBackground, StyleSheet, View } from 'react-native';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 20,
+    position: 'relative',
+  },
+  background: {
+    width: '100%',
+    height: '100%',
+  },
+  formElement: {
+    marginBottom: 20,
+  },
+  submit: {
+    width: '100%',
+  },
+});
 
 const INITIAL_STATE = {
   email: '',
@@ -9,7 +28,6 @@ const INITIAL_STATE = {
 };
 
 class LoginPage extends Component {
-
   state = {
     ...INITIAL_STATE,
   };
@@ -56,24 +74,5 @@ class LoginPage extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    padding: 20,
-    position: 'relative',
-  },
-  background: {
-    width: '100%',
-    height: '100%',
-  },
-  formElement: {
-    marginBottom: 20,
-  },
-  submit: {
-    width: '100%',
-  },
-});
 
 export default LoginPage;

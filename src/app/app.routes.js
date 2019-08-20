@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Reducer, Router, Scene, Stack } from 'react-native-router-flux';
+import {
+  Reducer, Router, Scene, Stack,
+} from 'react-native-router-flux';
 import { connect } from 'react-redux';
 
 import HomePage from '../pages/homepage/HomePage';
@@ -8,7 +10,7 @@ import LoginPage from '../pages/auth/LoginPage';
 import TestPage from '../pages/TestPage';
 
 const AppRoutes = ({ dispatch }) => {
-  reducerCreate = (params) => {
+  const reducerCreate = (params) => {
     const defaultReducer = new Reducer(params);
     return (state, action) => {
       dispatch(action);
@@ -17,7 +19,7 @@ const AppRoutes = ({ dispatch }) => {
   };
 
   return (
-    <Router createReducer={this.reducerCreate} >
+    <Router createReducer={reducerCreate}>
       <Stack key="root">
         <Scene key="home" component={HomePage} hideNavBar initial />
         <Scene key="login" component={LoginPage} />
@@ -25,7 +27,7 @@ const AppRoutes = ({ dispatch }) => {
       </Stack>
     </Router>
   );
-}
+};
 
 AppRoutes.propTypes = {
   dispatch: PropTypes.func.isRequired,

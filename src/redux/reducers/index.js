@@ -1,7 +1,7 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 
 import router from './router';
-import users from "./users";
+import users from './users';
 
 // main reducers
 const appReducer = combineReducers({

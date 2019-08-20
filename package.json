@@ -13,6 +13,7 @@
     "expo-localization": "~6.0.0",
     "firebase": "^6.4.0",
     "i18n-js": "^3.3.0",
+    "prop-types": "^15.7.2",
     "react": "16.8.3",
     "react-dom": "^16.8.6",
     "react-native": "https://github.com/expo/react-native/archive/sdk-34.0.0.tar.gz",
@@ -24,7 +25,15 @@
     "redux-saga": "^1.0.5"
   },
   "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "babel-eslint": "^10.0.2",
     "babel-preset-expo": "^6.0.0",
+    "eslint": "^6.2.1",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^1.7.0",
     "redux-logger": "^3.0.6"
   },
   "private": true

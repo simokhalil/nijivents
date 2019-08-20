@@ -5,21 +5,21 @@ import 'firebase/firestore';
 import 'firebase/storage';
 
 const prodConfig = {
-  apiKey: "AIzaSyBBrAg87GFtKpxDWdmNQOqTx0RKyPOr8c4",
-  authDomain: "nijivents.firebaseapp.com",
-  databaseURL: "https://nijivents.firebaseio.com",
-  projectId: "nijivents",
-  storageBucket: "nijivents.appspot.com",
-  messagingSenderId: "101794041246",
+  apiKey: 'AIzaSyBBrAg87GFtKpxDWdmNQOqTx0RKyPOr8c4',
+  authDomain: 'nijivents.firebaseapp.com',
+  databaseURL: 'https://nijivents.firebaseio.com',
+  projectId: 'nijivents',
+  storageBucket: 'nijivents.appspot.com',
+  messagingSenderId: '101794041246',
 };
 
 const devConfig = {
-  apiKey: "AIzaSyBBrAg87GFtKpxDWdmNQOqTx0RKyPOr8c4",
-  authDomain: "nijivents.firebaseapp.com",
-  databaseURL: "https://nijivents.firebaseio.com",
-  projectId: "nijivents",
-  storageBucket: "nijivents.appspot.com",
-  messagingSenderId: "101794041246",
+  apiKey: 'AIzaSyBBrAg87GFtKpxDWdmNQOqTx0RKyPOr8c4',
+  authDomain: 'nijivents.firebaseapp.com',
+  databaseURL: 'https://nijivents.firebaseio.com',
+  projectId: 'nijivents',
+  storageBucket: 'nijivents.appspot.com',
+  messagingSenderId: '101794041246',
 };
 
 const config = process.env.NODE_ENV === 'production' ? prodConfig : devConfig;

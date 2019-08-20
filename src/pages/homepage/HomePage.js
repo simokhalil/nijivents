@@ -1,6 +1,6 @@
 import React from 'react';
 import { Actions } from 'react-native-router-flux';
-import { StyleSheet, SafeAreaView } from 'react-native';
+import { StyleSheet } from 'react-native';
 import {
   Button,
   Layout,
@@ -8,29 +8,6 @@ import {
 } from 'react-native-ui-kitten';
 
 import { translate } from '../../i18n/i18n';
-
-const HomePage = () => {
-  const goToTest = () => {
-    Actions.test();
-  };
-
-  console.log('Homepage OK');
-
-  return (
-    <>
-      <Layout style={styles.container}>
-        <Text category='h4' style={styles.text}>{`${translate('common.welcome')} to Nijievents`}</Text>
-        <Button onPress={Actions.login} appearance="outline">
-          LOGIN
-        </Button>
-
-        <Button onPress={goToTest} appearance="outline">
-          INSCRIPTION
-        </Button>
-      </Layout>
-    </>
-  )
-};
 
 const styles = StyleSheet.create({
   container: {
@@ -42,5 +19,26 @@ const styles = StyleSheet.create({
     marginVertical: 16,
   },
 });
+
+const HomePage = () => {
+  const goToTest = () => {
+    Actions.test();
+  };
+
+  return (
+    <>
+      <Layout style={styles.container}>
+        <Text category="h4" style={styles.text}>{`${translate('common.welcome')} to Nijievents`}</Text>
+        <Button onPress={Actions.login} appearance="outline">
+          LOGIN
+        </Button>
+
+        <Button onPress={goToTest} appearance="outline">
+          INSCRIPTION
+        </Button>
+      </Layout>
+    </>
+  );
+};
 
 export default HomePage;

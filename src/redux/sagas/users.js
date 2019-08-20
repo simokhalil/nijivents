@@ -1,12 +1,14 @@
-import { call, put, take, takeEvery, takeLatest } from 'redux-saga/effects';
+import {
+  call, put, take, takeEvery, takeLatest,
+} from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
 
-import { userDB, firebase } from '../../firebase/';
 import store from '../store';
+import { userDB, firebase } from '../../firebase';
 
 function subscribeToUser(userId) {
   return eventChannel((emmiter) => {
-    firebase.db.collection('users').doc(userId).onSnapshot(doc => {
+    firebase.db.collection('users').doc(userId).onSnapshot((doc) => {
       emmiter(doc.data());
     });
 
@@ -14,8 +16,7 @@ function subscribeToUser(userId) {
   });
 }
 
-export function* getUserSaga(action) {
-
+export function* getUserSaga() {
   const state = store.getState();
   const currentUser = state.users.authUser;
 
@@ -25,7 +26,7 @@ export function* getUserSaga(action) {
     yield put({ type: 'USER_SET_REDUX', payload: { user } });
   });
 
-  yield take('GET_USER_CANCEL')
+  yield take('GET_USER_CANCEL');
   channel.close();
 }
 
@@ -36,7 +37,6 @@ export function* saveUserSettingsSaga(action) {
   const currentUser = state.users.authUser;
 
   try {
-
     yield userDB.saveSettings(currentUser.uid, settings);
 
     yield put({ type: 'SAVE_USER_SUCCESS' });

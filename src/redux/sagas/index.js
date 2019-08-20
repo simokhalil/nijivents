@@ -7,7 +7,7 @@ const sagas = [
 ];
 
 function* rootSaga() {
-  yield all(sagas.map(saga => fork(saga)));
+  yield all(sagas.map((saga) => fork(saga)));
 }
 
 export default rootSaga;
