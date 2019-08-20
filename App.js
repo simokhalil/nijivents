@@ -3,7 +3,7 @@ import { ApplicationProvider } from 'react-native-ui-kitten';
 import { Provider } from 'react-redux';
 import { mapping, light as lightTheme, dark as darkTheme } from '@eva-design/eva';
 
-import CustomRouter from './src/utils/CustomRouter';
+import AppRoutes from './src/app/app.routes';
 import store from './src/redux/store';
 
 export default function App() {
@@ -13,7 +13,7 @@ export default function App() {
         mapping={mapping}
         theme={lightTheme}
       >
-        <CustomRouter />
+        <AppRoutes />
       </ApplicationProvider>
     </Provider>
   );
