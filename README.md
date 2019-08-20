@@ -13,6 +13,12 @@ npm i -g yarn
 yarn global add expo-cli
 ```
 
+
+- Install project dependencies
+```
+yarn install
+```
+
 - Clone the repo (hope you're already using SSH Keys to authenticate to Github)
 
 - Go to the project folder and run
