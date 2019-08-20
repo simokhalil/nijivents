@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
-import { Button, Input } from 'react-native-ui-kitten';
-import { ImageBackground, StyleSheet, View } from 'react-native';
+import { Actions, ActionConst } from 'react-native-router-flux';
+import { Button, Input, Layout } from 'react-native-ui-kitten';
+import { Image, StyleSheet, View } from 'react-native';
+
+import AppConstants from '../../app/app.constants';
+import LoginImage from '../../assets/images/undraw_authentication_fsn5.png';
+import { auth } from '../../firebase';
+import { translate } from '../../i18n/i18n';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    padding: 20,
-    position: 'relative',
   },
   background: {
     width: '100%',
-    height: '100%',
+    height: '50%',
+  },
+  formContainer: {
+    padding: 20,
   },
   formElement: {
     marginBottom: 20,
@@ -38,25 +44,37 @@ class LoginPage extends Component {
     });
   };
 
-  onLogin = () => {
+  login = async () => {
     const { email, password } = this.state;
+
+    try {
+      await auth.doSignInWithEmailAndPassword(email, password);
+
+      Actions[AppConstants.ROUTES.test].call({
+        type: ActionConst.RESET,
+      });
+    } catch (error) {
+      console.log('error login in user', error);
+    }
   };
 
   render() {
     const { email, password, error } = this.state;
 
     return (
-      <ImageBackground style={styles.background} source={require('../../assets/images/login_bg.jpg')}>
-        <View style={styles.container}>
+      <Layout style={styles.container}>
+        <Image source={LoginImage} style={styles.background} />
+
+        <View style={styles.formContainer}>
           <Input
-            label="Email"
+            label={translate('auth.email')}
             value={email}
             onChangeText={(text) => this.onInputValueChange('email', text)}
             style={styles.formElement}
           />
 
           <Input
-            label="Password"
+            label={translate('auth.password')}
             value={password}
             onChangeText={(text) => this.onInputValueChange('password', text)}
             style={styles.formElement}
@@ -64,13 +82,13 @@ class LoginPage extends Component {
           />
 
           <Button
-            onPress={this.onLogin}
+            onPress={this.login}
             style={styles.submit}
           >
-            LOGIN
+            {translate('auth.login')}
           </Button>
         </View>
-      </ImageBackground>
+      </Layout>
     );
   }
 }

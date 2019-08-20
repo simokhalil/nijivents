@@ -5,9 +5,13 @@ import {
 } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 
+import AppConfig from './app.config';
+import AppConstants from './app.constants';
+import DashboardPage from '../pages/dashboard/DashboardPage';
 import HomePage from '../pages/homepage/HomePage';
 import LoginPage from '../pages/auth/LoginPage';
-import TestPage from '../pages/TestPage';
+import SignupPage from '../pages/auth/SignupPage';
+
 
 const AppRoutes = ({ dispatch }) => {
   const reducerCreate = (params) => {
@@ -20,10 +24,13 @@ const AppRoutes = ({ dispatch }) => {
 
   return (
     <Router createReducer={reducerCreate}>
-      <Stack key="root">
-        <Scene key="home" component={HomePage} hideNavBar initial />
-        <Scene key="login" component={LoginPage} />
-        <Scene key="test" component={TestPage} />
+      <Stack key="root" {...AppConfig.navbarProps}>
+        <Scene key={AppConstants.ROUTES.home} component={HomePage} hideNavBar initial />
+        <Scene key={AppConstants.ROUTES.login} component={LoginPage} />
+        <Scene key={AppConstants.ROUTES.signup} component={SignupPage} />
+        <Scene key={AppConstants.ROUTES.dashboard} component={SignupPage} />
+
+        <Scene key={AppConstants.ROUTES.test} component={DashboardPage} />
       </Stack>
     </Router>
   );

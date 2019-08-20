@@ -1,40 +1,56 @@
 import React from 'react';
 import { Actions } from 'react-native-router-flux';
-import { StyleSheet } from 'react-native';
+import { Image, StyleSheet } from 'react-native';
 import {
   Button,
   Layout,
   Text,
 } from 'react-native-ui-kitten';
 
+import AppConstants from '../../app/app.constants';
+import WelcomImage from '../../assets/images/undraw_having_fun_iais.png';
 import { translate } from '../../i18n/i18n';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+  },
+  image: {
+    width: '100%',
+    height: '50%',
   },
   text: {
-    marginVertical: 16,
+    marginVertical: 30,
+  },
+  button: {
+    width: '70%',
+    marginVertical: 20,
   },
 });
 
 const HomePage = () => {
-  const goToTest = () => {
-    Actions.test();
+  const goToLogin = () => {
+    Actions[AppConstants.ROUTES.login].call();
+  };
+
+  const goToSignup = () => {
+    Actions[AppConstants.ROUTES.signup].call();
   };
 
   return (
     <>
       <Layout style={styles.container}>
-        <Text category="h4" style={styles.text}>{`${translate('common.welcome')} to Nijievents`}</Text>
-        <Button onPress={Actions.login} appearance="outline">
-          LOGIN
+        <Image source={WelcomImage} style={styles.image} />
+
+        <Text category="h4" style={styles.text}>{`${translate('auth.welcome')}`}</Text>
+
+        <Button onPress={goToLogin} appearance="fill" style={styles.button}>
+          {translate('auth.login').toUpperCase()}
         </Button>
 
-        <Button onPress={goToTest} appearance="outline">
-          INSCRIPTION
+        <Button onPress={goToSignup} appearance="ghost" style={styles.button}>
+          {translate('auth.noAccount')}
         </Button>
       </Layout>
     </>
