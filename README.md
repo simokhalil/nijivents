@@ -1,5 +1,7 @@
 # nijivents (#parrotChallenge)
 
+![Bitrise Status](https://app.bitrise.io/app/bdb569f3063f12a2/status.svg?token=8JF6XYWSLTy_96U8WABybA)
+
 ### Start point
 First of all, ensure you have node, npm, xcode and Android Studio installed on your machine.
 
