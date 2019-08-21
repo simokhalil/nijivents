@@ -4,7 +4,7 @@ import AppStyles from './app.styles';
 export default {
 
   navbarProps: {
-    hideNavBar: false,
+    hideNavBar: true,
     titleStyle: AppStyles.navbarTitle,
     navigationBarStyle: AppStyles.navbar,
     navBarButtonColor: AppStyles.navbarButton.tintColor,

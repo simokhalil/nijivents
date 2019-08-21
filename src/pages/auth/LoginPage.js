@@ -82,6 +82,7 @@ class LoginPage extends Component {
           />
 
           <Button
+            appearance="filled"
             onPress={this.login}
             style={styles.submit}
           >

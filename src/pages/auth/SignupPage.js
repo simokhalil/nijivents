@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { Actions, ActionConst } from 'react-native-router-flux';
-import { Button, Input, Layout } from 'react-native-ui-kitten';
-import { StyleSheet } from 'react-native';
+import { Button, Input } from 'react-native-ui-kitten';
+import { Image, ScrollView, StyleSheet, View } from 'react-native';
 
 import AppConstants from '../../app/app.constants';
 import { auth, userDB } from '../../firebase';
 import { translate } from '../../i18n/i18n';
 
+import HeaderWavy from '../../components/header/HeaderWavy';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    padding: 20,
     position: 'relative',
   },
   background: {
@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
   },
   formElement: {
     marginBottom: 20,
+    paddingHorizontal: 20,
   },
   submit: {
     width: '100%',
@@ -105,36 +106,41 @@ class SignupPage extends Component {
     } = this.state;
 
     return (
-      <Layout style={styles.container}>
-        <Input
-          label={translate('auth.name')}
-          value={name}
-          onChangeText={(text) => this.onInputValueChange('name', text)}
-          style={styles.formElement}
-        />
+      <>
+        <HeaderWavy />
+        
+        <ScrollView style={styles.container}>
+          <Input
+            label={translate('auth.name')}
+            value={name}
+            onChangeText={(text) => this.onInputValueChange('name', text)}
+            style={styles.formElement}
+          />
 
-        <Input
-          label={translate('auth.email')}
-          value={email}
-          onChangeText={(text) => this.onInputValueChange('email', text)}
-          style={styles.formElement}
-        />
+          <Input
+            label={translate('auth.email')}
+            value={email}
+            onChangeText={(text) => this.onInputValueChange('email', text)}
+            style={styles.formElement}
+          />
 
-        <Input
-          label={translate('auth.password')}
-          value={password}
-          onChangeText={(text) => this.onInputValueChange('password', text)}
-          style={styles.formElement}
-          secureTextEntry
-        />
+          <Input
+            label={translate('auth.password')}
+            value={password}
+            onChangeText={(text) => this.onInputValueChange('password', text)}
+            style={styles.formElement}
+            secureTextEntry
+          />
 
-        <Button
-          onPress={this.signup}
-          style={styles.submit}
-        >
-          {translate('auth.login')}
-        </Button>
-      </Layout>
+          <Button
+            appearance="filled"
+            onPress={this.signup}
+            style={styles.submit}
+          >
+            {translate('auth.login')}
+          </Button>
+        </ScrollView>
+      </>
     );
   }
 }
