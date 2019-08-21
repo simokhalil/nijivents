@@ -13,14 +13,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
   },
   image: {
     width: '100%',
     height: '50%',
-  },
-  text: {
-    marginVertical: 30,
   },
   button: {
     width: '70%',
@@ -52,8 +49,6 @@ const HomePage = () => {
       </HeaderWavy>
 
       <View style={styles.container}>
-
-        <Text category="h4" style={styles.text}>{`${translate('auth.welcome')}`}</Text>
 
         <Button onPress={goToLogin} appearance="filled" style={styles.button}>
           {translate('auth.login').toUpperCase()}
