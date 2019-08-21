@@ -1,15 +1,10 @@
 import React from 'react';
 import { Actions } from 'react-native-router-flux';
 import { Image, StyleSheet, View } from 'react-native';
-import {
-  Button,
-  Layout,
-  Text,
-} from 'react-native-ui-kitten';
+import { Button, Text } from 'react-native-ui-kitten';
 
 import AppConstants from '../../app/app.constants';
 import HeaderWavy from '../../components/header/HeaderWavy';
-import WelcomImage from '../../assets/images/undraw_having_fun_iais.png';
 import { translate } from '../../i18n/i18n';
 
 import LogoWhite from '../../assets/images/nijivents-logo_white.png';
@@ -55,7 +50,7 @@ const HomePage = () => {
         <Image source={LogoWhite} style={{ width: 100, height: 100 }} />
         <Text style={styles.logoText}>Nijivents</Text>
       </HeaderWavy>
-      
+
       <View style={styles.container}>
 
         <Text category="h4" style={styles.text}>{`${translate('auth.welcome')}`}</Text>

@@ -7,7 +7,7 @@ import {
 import PolygonsImage from '../../assets/images/polygons.png';
 import WaveImage from '../../assets/images/wave5.png';
 
-const { width, height } = Dimensions.get('window');
+const { height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   headerbar: {
@@ -29,10 +29,10 @@ const styles = StyleSheet.create({
 
 const HeaderWavy = ({ children, title, isLarge }) => (
 
-    <View style={{ height: isLarge ? height * 0.75 : 200 }}>
+  <View style={{ height: isLarge ? height * 0.75 : 200 }}>
     <ImageBackground source={WaveImage} style={styles.background} imageStyle={{ resizeMode: 'stretch' }}>
       <Image source={PolygonsImage} style={{ width: '100%', height: '100%', resizeMode: 'contain', position: 'absolute', top: 0, left: 0 }} />
-      
+
       <View style={[styles.headerbar]}>
         <Text>{title}</Text>
       </View>
@@ -40,9 +40,9 @@ const HeaderWavy = ({ children, title, isLarge }) => (
       <View style={styles.headerContent}>
         {children}
       </View>
-      </ImageBackground>
-    </View>
-  
+    </ImageBackground>
+  </View>
+
 );
 
 HeaderWavy.propTypes = {

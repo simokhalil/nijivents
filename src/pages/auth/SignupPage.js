@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Actions, ActionConst } from 'react-native-router-flux';
 import { Button, Input } from 'react-native-ui-kitten';
-import { Image, ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 
 import AppConstants from '../../app/app.constants';
 import { auth, userDB } from '../../firebase';
@@ -108,7 +108,7 @@ class SignupPage extends Component {
     return (
       <>
         <HeaderWavy />
-        
+
         <ScrollView style={styles.container}>
           <Input
             label={translate('auth.name')}
