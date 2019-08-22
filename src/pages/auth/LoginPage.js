@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Actions, ActionConst } from 'react-native-router-flux';
-import { Button, Input, Layout } from 'react-native-ui-kitten';
-import { Image, StyleSheet, View } from 'react-native';
+import { Button, Input } from 'galio-framework';
+import {
+  ScrollView, StyleSheet, View,
+} from 'react-native';
 
 import AppConstants from '../../app/app.constants';
-import LoginImage from '../../assets/images/undraw_authentication_fsn5.png';
+import HeaderWavy from '../../components/header/HeaderWavy';
 import { auth } from '../../firebase';
 import { translate } from '../../i18n/i18n';
 
@@ -62,34 +64,39 @@ class LoginPage extends Component {
     const { email, password, error } = this.state;
 
     return (
-      <Layout style={styles.container}>
-        <Image source={LoginImage} style={styles.background} />
+      <>
+        <HeaderWavy isLarge withLogo />
 
-        <View style={styles.formContainer}>
-          <Input
-            label={translate('auth.email')}
-            value={email}
-            onChangeText={(text) => this.onInputValueChange('email', text)}
-            style={styles.formElement}
-          />
+        <ScrollView style={styles.container}>
+          <View style={styles.formContainer}>
+            <Input
+              placeholder={translate('auth.email')}
+              value={email}
+              onChangeText={(text) => this.onInputValueChange('email', text)}
+              style={styles.formElement}
+              rounded
+            />
 
-          <Input
-            label={translate('auth.password')}
-            value={password}
-            onChangeText={(text) => this.onInputValueChange('password', text)}
-            style={styles.formElement}
-            secureTextEntry
-          />
+            <Input
+              placeholder={translate('auth.password')}
+              value={password}
+              onChangeText={(text) => this.onInputValueChange('password', text)}
+              style={styles.formElement}
+              rounded
+              password
+              viewPass
+            />
 
-          <Button
-            appearance="filled"
-            onPress={this.login}
-            style={styles.submit}
-          >
-            {translate('auth.login')}
-          </Button>
-        </View>
-      </Layout>
+            <Button
+              radius={50}
+              size="large"
+              onPress={this.login}
+            >
+              {translate('auth.login')}
+            </Button>
+          </View>
+        </ScrollView>
+      </>
     );
   }
 }

@@ -1,13 +1,12 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Actions } from 'react-native-router-flux';
-import { Image, StyleSheet, View } from 'react-native';
-import { Button, Text } from 'react-native-ui-kitten';
+import { StyleSheet, View } from 'react-native';
+import { Button, withGalio } from 'galio-framework';
 
 import AppConstants from '../../app/app.constants';
 import HeaderWavy from '../../components/header/HeaderWavy';
 import { translate } from '../../i18n/i18n';
-
-import LogoWhite from '../../assets/images/nijivents-logo_white.png';
 
 const styles = StyleSheet.create({
   container: {
@@ -23,16 +22,9 @@ const styles = StyleSheet.create({
     width: '70%',
     marginVertical: 20,
   },
-  logoText: {
-    color: '#ffffff',
-    fontSize: 28,
-    lineHeight: 28,
-    fontWeight: '100',
-    marginTop: 30,
-  },
 });
 
-const HomePage = () => {
+const HomePage = ({ theme }) => {
   const goToLogin = () => {
     Actions[AppConstants.ROUTES.login].call();
   };
@@ -43,18 +35,26 @@ const HomePage = () => {
 
   return (
     <>
-      <HeaderWavy isLarge>
-        <Image source={LogoWhite} style={{ width: 100, height: 100 }} />
-        <Text style={styles.logoText}>Nijivents</Text>
-      </HeaderWavy>
+      <HeaderWavy isLarge withPolygons withLogo />
 
       <View style={styles.container}>
 
-        <Button onPress={goToLogin} appearance="filled" style={styles.button}>
+        <Button
+          onPress={goToLogin}
+          style={styles.button}
+          radius={50}
+        >
           {translate('auth.login').toUpperCase()}
         </Button>
 
-        <Button onPress={goToSignup} appearance="ghost" style={styles.button}>
+        <Button
+          onPress={goToSignup}
+          style={styles.button}
+          radius={50}
+          shadowless
+          color="transparent"
+          textStyle={{ color: theme.COLORS.PRIMARY }}
+        >
           {translate('auth.noAccount')}
         </Button>
       </View>
@@ -62,4 +62,8 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+HomePage.propTypes = {
+  theme: PropTypes.object.isRequired,
+};
+
+export default withGalio(HomePage);

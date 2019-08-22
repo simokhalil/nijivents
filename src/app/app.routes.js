@@ -18,6 +18,7 @@ const AppRoutes = ({ dispatch }) => {
     const defaultReducer = new Reducer(params);
     return (state, action) => {
       dispatch(action);
+      state && dispatch({ type: 'ROUTER_STATE_CHANGED', payload: state });
       return defaultReducer(state, action);
     };
   };

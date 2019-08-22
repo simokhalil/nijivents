@@ -1,6 +1,6 @@
 import React from 'react';
 import { Actions, ActionConst } from 'react-native-router-flux';
-import { Button } from 'react-native-ui-kitten';
+import { Button } from 'galio-framework';
 import { View, Text } from 'react-native';
 
 import AppConstants from '../../app/app.constants';
