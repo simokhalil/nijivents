@@ -1,5 +1,10 @@
 // users reducer
-export default function users(state = {}, action) {
+
+const initialState = {
+  isUserFetchFinished: false,
+};
+
+export default function users(state = initialState, action) {
   const authUser = action.data;
 
   switch (action.type) {
@@ -7,6 +12,7 @@ export default function users(state = {}, action) {
       return {
         ...state,
         authUser,
+        isUserFetchFinished: true,
       };
 
     case 'USER_SET_REDUX':
@@ -16,10 +22,13 @@ export default function users(state = {}, action) {
           ...state.authUser,
           ...action.payload.user,
         },
+        isUserFetchFinished: true,
       };
 
     case 'USER_SIGNED_OUT':
-      return {};
+      return {
+        isUserFetchFinished: true,
+      };
 
     // initial state
     default:

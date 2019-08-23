@@ -52,7 +52,7 @@ class LoginPage extends Component {
     try {
       await auth.doSignInWithEmailAndPassword(email, password);
 
-      Actions[AppConstants.ROUTES.test].call({
+      Actions[AppConstants.ROUTES.home]({
         type: ActionConst.RESET,
       });
     } catch (error) {
@@ -74,6 +74,7 @@ class LoginPage extends Component {
               value={email}
               onChangeText={(text) => this.onInputValueChange('email', text)}
               style={styles.formElement}
+              type="email-address"
               rounded
             />
 

@@ -29,6 +29,7 @@ if (!firebase.apps.length) {
 }
 
 const auth = firebase.auth();
+auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
 const db = firebase.firestore();
 const settings = {

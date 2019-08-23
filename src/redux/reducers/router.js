@@ -11,7 +11,6 @@ const initialState = {
 };
 
 export default function routerReducer(state = initialState, action) {
-  console.log('reducer', action);
   switch (action.type) {
     // focus action is dispatched when a new screen comes into focus
     case ActionConst.FOCUS:
