@@ -110,7 +110,7 @@ class SignupPage extends Component {
 
     return (
       <>
-        <HeaderWavy isLarge withLogo />
+        <HeaderWavy />
 
         <ScrollView style={styles.container}>
           <View style={styles.formContainer}>

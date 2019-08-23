@@ -81,7 +81,7 @@ const EventDetails = ({ event }) => {
 
       <HeaderWavy transparent />
 
-      <ScrollView style={{ flex: 1, marginTop: -AppTheme.SIZES.BASE * 2 }}>
+      <ScrollView style={{ flex: 1, marginTop: -AppTheme.SIZES.BASE * 2, borderRadius: AppTheme.SIZES.BASE * 1.25 }}>
         <StatusBar barStyle="light-content" />
 
         <Block flex style={{ paddingTop: (height * 0.55) - 200 }}>
@@ -131,6 +131,19 @@ const EventDetails = ({ event }) => {
 
             <Block>
               <Text style={styles.text}>
+                You should totally like check this out, ok? Why would you use another UI
+                library when you have so many components written by Creative Tim and the
+                whole React Native community. Galio was created by developers for
+                developers.
+                You should totally like check this out, ok? Why would you use another UI
+                library when you have so many components written by Creative Tim and the
+                whole React Native community. Galio was created by developers for
+                developers.
+                You should totally like check this out, ok? Why would you use another UI
+                library when you have so many components written by Creative Tim and the
+                whole React Native community. Galio was created by developers for
+                developers.
+
                 You should totally like check this out, ok? Why would you use another UI
                 library when you have so many components written by Creative Tim and the
                 whole React Native community. Galio was created by developers for

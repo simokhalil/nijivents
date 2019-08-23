@@ -3,10 +3,11 @@ import i18n from 'i18n-js';
 
 import fr from './locales/fr';
 
-i18n.fallbacks = false;
+i18n.fallbacks = true;
 i18n.translations = {
   fr,
   'fr-FR': fr,
+  'fr-US': fr,
 };
 i18n.defaultLocale = 'fr';
 
