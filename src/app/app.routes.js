@@ -9,7 +9,7 @@ import AppConfig from './app.config';
 import AppConstants from './app.constants';
 import EventDetailsPage from '../pages/events/EventDetailsPage';
 import HomePage from '../pages/homepage/HomePage';
-import LoginPage from '../pages/auth/LoginPage';
+import LoginPage from '../pages/auth/LoginPage2';
 import SignupPage from '../pages/auth/SignupPage';
 import WelcomePage from '../pages/welcome/WelcomPage';
 
