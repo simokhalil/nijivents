@@ -86,6 +86,7 @@ class LoginPage extends Component {
               rounded
               password
               viewPass
+              autoCapitalize="none"
             />
 
             <Button
