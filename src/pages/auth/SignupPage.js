@@ -139,6 +139,7 @@ class SignupPage extends Component {
               rounded
               password
               viewPass
+              autoCapitalize="none"
             />
 
             <Button
