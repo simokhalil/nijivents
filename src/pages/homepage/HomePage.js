@@ -7,6 +7,7 @@ import {
 import { Dimensions, ScrollView, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
+import AppConstants from '../../app/app.constants';
 import AppTheme from '../../app/app.theme';
 import HeaderWavy from '../../components/header/HeaderWavy';
 
@@ -54,6 +55,13 @@ const styles = {
     overflow: 'hidden',
     borderBottomRightRadius: AppTheme.SIZES.BASE * 0.5,
     borderBottomLeftRadius: AppTheme.SIZES.BASE * 0.5,
+  },
+  fab: {
+    position: 'absolute',
+    bottom: 30,
+    right: 30,
+    width: 60,
+    height: 60,
   },
 };
 
@@ -157,6 +165,17 @@ const DashboardPage = ({ theme }) => (
         ))}
       </Block>
     </ScrollView>
+
+    <Button
+      onlyIcon
+      icon="plus"
+      iconFamily="Feather"
+      iconSize={30}
+      iconColor={theme.COLORS.WHITE}
+      style={styles.fab}
+      radius={60}
+      onPress={Actions[AppConstants.ROUTES.eventAdd]}
+    />
   </Block>
 );
 

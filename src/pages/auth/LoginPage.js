@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Actions, ActionConst } from 'react-native-router-flux';
 import { Button, Input } from 'galio-framework';
 import {
-  ScrollView, StyleSheet, View,
+  KeyboardAvoidingView, ScrollView, StyleSheet, View,
 } from 'react-native';
 
 import AppConstants from '../../app/app.constants';
@@ -64,10 +64,10 @@ class LoginPage extends Component {
     const { email, password, error } = this.state;
 
     return (
-      <>
-        <HeaderWavy isLarge withLogo />
-
+      <KeyboardAvoidingView style={{ flex: 1 }} behavior="height">
         <ScrollView style={styles.container}>
+          <HeaderWavy isLarge withLogo />
+
           <View style={styles.formContainer}>
             <Input
               placeholder={translate('auth.email')}
@@ -97,8 +97,9 @@ class LoginPage extends Component {
               {translate('auth.login')}
             </Button>
           </View>
+
         </ScrollView>
-      </>
+      </KeyboardAvoidingView>
     );
   }
 }

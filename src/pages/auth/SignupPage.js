@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Actions, ActionConst } from 'react-native-router-flux';
 import { Button, Input } from 'galio-framework';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { KeyboardAvoidingView, ScrollView, StyleSheet, View } from 'react-native';
 
 import AppConstants from '../../app/app.constants';
 import { auth, userDB } from '../../firebase';
@@ -112,45 +112,47 @@ class SignupPage extends Component {
       <>
         <HeaderWavy />
 
-        <ScrollView style={styles.container}>
-          <View style={styles.formContainer}>
-            <Input
-              placeholder={translate('auth.name')}
-              value={name}
-              onChangeText={(text) => this.onInputValueChange('name', text)}
-              style={styles.formElement}
-              rounded
-            />
+        <KeyboardAvoidingView style={{ flex: 1 }} behavior="height" keyboardVerticalOffset={10}>
+          <ScrollView style={styles.container}>
+            <View style={styles.formContainer}>
+              <Input
+                placeholder={translate('auth.name')}
+                value={name}
+                onChangeText={(text) => this.onInputValueChange('name', text)}
+                style={styles.formElement}
+                rounded
+              />
 
-            <Input
-              placeholder={translate('auth.email')}
-              value={email}
-              onChangeText={(text) => this.onInputValueChange('email', text)}
-              style={styles.formElement}
-              type="email-address"
-              rounded
-            />
+              <Input
+                placeholder={translate('auth.email')}
+                value={email}
+                onChangeText={(text) => this.onInputValueChange('email', text)}
+                style={styles.formElement}
+                type="email-address"
+                rounded
+              />
 
-            <Input
-              placeholder={translate('auth.password')}
-              value={password}
-              onChangeText={(text) => this.onInputValueChange('password', text)}
-              style={styles.formElement}
-              rounded
-              password
-              viewPass
-              autoCapitalize="none"
-            />
+              <Input
+                placeholder={translate('auth.password')}
+                value={password}
+                onChangeText={(text) => this.onInputValueChange('password', text)}
+                style={styles.formElement}
+                rounded
+                password
+                viewPass
+                autoCapitalize="none"
+              />
 
-            <Button
-              radius={50}
-              size="small"
-              onPress={this.signup}
-            >
-              {translate('auth.login')}
-            </Button>
-          </View>
-        </ScrollView>
+              <Button
+                radius={50}
+                size="small"
+                onPress={this.signup}
+              >
+                {translate('auth.login')}
+              </Button>
+            </View>
+          </ScrollView>
+        </KeyboardAvoidingView>
       </>
     );
   }

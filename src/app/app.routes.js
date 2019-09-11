@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 
 import AppConfig from './app.config';
 import AppConstants from './app.constants';
+import EventAddPage from '../pages/events/EventAddPage';
 import EventDetailsPage from '../pages/events/EventDetailsPage';
 import HomePage from '../pages/homepage/HomePage';
 import LoginPage from '../pages/auth/LoginPage';
@@ -35,7 +36,9 @@ const AppRoutes = ({ dispatch }) => {
         <Scene key={AppConstants.ROUTES.login} component={LoginPage} />
         <Scene key={AppConstants.ROUTES.signup} component={SignupPage} />
         <Scene key={AppConstants.ROUTES.home} component={HomePage} />
+
         <Scene key={AppConstants.ROUTES.eventDetails} component={EventDetailsPage} />
+        <Scene key={AppConstants.ROUTES.eventAdd} component={EventAddPage} />
 
         <Scene key={AppConstants.ROUTES.test} component={HomePage} />
       </Stack>
