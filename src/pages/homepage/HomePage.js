@@ -139,7 +139,7 @@ const DashboardPage = ({ theme }) => (
     <ScrollView contentContainerStyle={styles.cards}>
       <Block flex space="between">
         {cards.map((card, id) => (
-          <TouchableOpacity style={styles.cardContainer} onPress={() => Actions.eventDetails({ event: card })}>
+          <TouchableOpacity key={card.image} style={styles.cardContainer} onPress={() => Actions.eventDetails({ event: card })}>
             <Card
               key={`card-${card.image}`}
               flex

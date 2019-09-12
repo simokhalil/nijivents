@@ -23,7 +23,7 @@ const styles = {
     width,
     flex: 1,
     backgroundColor: AppTheme.COLORS.WHITE,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     padding: 20,
     position: 'relative',

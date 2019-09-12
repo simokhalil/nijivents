@@ -28,5 +28,8 @@ export default {
     whichAddress: 'A quelle adresse ?',
     whichCategory: 'De quelle catégorie est votre évènement ?',
     whichDates: 'Pour quand ?',
+    search: {
+      location: 'Lieu, adresse, ...',
+    },
   },
 };
