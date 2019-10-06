@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { View, WebView } from 'react-native';
+import { View } from 'react-native';
+import { Asset } from 'expo-asset';
+import { WebView } from 'react-native-webview';
 
 const styles = {
   containerStyle: {
@@ -17,27 +19,27 @@ const styles = {
 };
 
 const ParticlesView = ({ containerStyle, children }) => {
-  const [html,setHtml]=React.useState("")
+  const [html, setHtml] = React.useState('');
 
-  React.useEffect(()=>{
-    async function load(){
-      const{uri}=Asset.fromModule(require('./widget/particles.html'))
-      const res = await fetch(uri)
-      const html = await res.text()
-      console.log("got html",html)
-      setHtml(html)
+  React.useEffect(() => {
+    async function load() {
+      const { uri } = Asset.fromModule(require('./widget/particles.html'));
+      const res = await fetch(uri);
+      const htmlContent = await res.text();
+      setHtml(htmlContent);
     }
-    load()
-  },[])
+    load();
+  }, []);
 
   return (
     <View style={styles.containerStyle}>
-      <WebView
-        originWhitelist={['*']}
-        scalesPageToFit={true}
-        source={{ html }}
-        style={{ flex: 1, zIndex: 0 }}
-      />
+      {!!html && (
+        <WebView
+          originWhitelist={['*']}
+          source={{ html }}
+          style={{ width: '100%', flex: 1, zIndex: 0 }}
+        />
+      )}
 
       <View style={[styles.content, containerStyle]}>
         {children}

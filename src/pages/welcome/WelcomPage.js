@@ -36,7 +36,7 @@ class WelcomePage extends React.Component {
 
   shouldComponentUpdate(nextProps) {
     if (nextProps.currentUser) {
-      Actions[AppConstants.ROUTES.home]({
+      Actions.tabbar({
         type: ActionConst.RESET,
       });
 

@@ -1,22 +1,27 @@
 import Animated, { Easing } from 'react-native-reanimated';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import Svg, { Image, Circle, ClipPath } from 'react-native-svg';
+import Svg, { Circle, ClipPath } from 'react-native-svg';
 import { Accelerometer } from 'expo-sensors';
 import { Actions, ActionConst } from 'react-native-router-flux';
 import { Button, Input } from 'galio-framework';
 import {
   Dimensions,
+  Image,
   KeyboardAvoidingView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
+import { SplashScreen } from 'expo';
 import { TapGestureHandler, State } from 'react-native-gesture-handler';
+import { connect } from 'react-redux';
 
 import AppConstants from '../../app/app.constants';
 import HeaderWavy from '../../components/header/HeaderWavy';
 import LoginBg from '../../assets/images/login_bg2.jpg';
+import LogoWhite from '../../assets/images/nijivents-logo_white.png';
 import ParticlesView from '../../components/ParticlesBackground/ParticlesBackground';
 import { auth } from '../../firebase';
 import { runTiming } from '../../utils/animation';
@@ -45,11 +50,26 @@ const {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'white',
     justifyContent: 'flex-end',
   },
   background: {
     width: '100%',
     height: '50%',
+  },
+  headerContent: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    marginTop: 150,
+  },
+  logoText: {
+    color: '#ffffff',
+    fontSize: 28,
+    lineHeight: 28,
+    fontWeight: '100',
+    marginTop: 30,
   },
   button: {
     backgroundColor: 'white',
@@ -103,6 +123,8 @@ class LoginPage extends Component {
     this.state = {
       ...INITIAL_STATE,
     };
+
+    SplashScreen.preventAutoHide();
 
     this.buttonOpacity = new Value(1);
 
@@ -171,6 +193,22 @@ class LoginPage extends Component {
     this.subscribeToAccelerometer();
   }
 
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.currentUser) {
+      Actions.tabbar({
+        type: ActionConst.RESET,
+      });
+
+      SplashScreen.hide();
+
+      return false;
+    }
+
+    SplashScreen.hide();
+
+    return true;
+  }
+
   componentWillUnmount() {
     this.unsubscribeFromAccelerometer();
   }
@@ -207,7 +245,7 @@ class LoginPage extends Component {
     try {
       await auth.doSignInWithEmailAndPassword(email, password);
 
-      Actions[AppConstants.ROUTES.home]({
+      Actions.tabbar({
         type: ActionConst.RESET,
       });
     } catch (error) {
@@ -225,15 +263,14 @@ class LoginPage extends Component {
 
     return (
       <KeyboardAvoidingView style={{ flex: 1 }} behavior="height">
-        <Animated.ScrollView contentContainerStyle={styles.container}>
 
+        <Animated.ScrollView contentContainerStyle={styles.container}>
           <Animated.View
             style={{
               ...StyleSheet.absoluteFill,
               transform: [{ translateY: this.bgY }],
             }}
           >
-            <ParticlesView style={{ flex: 1 }}/>
             <Svg
               height={height + 125}
               width={width * 2}
@@ -254,6 +291,14 @@ class LoginPage extends Component {
                 clipPath="url(#clip)"
               />
             </Svg>
+
+          </Animated.View>
+
+          <Animated.View
+            style={{ ...styles.headerContent, transform: [{ translateY: this.bgY }], }}
+          >
+            <Image source={LogoWhite} style={{ width: 100, height: 100 }} />
+            <Text style={styles.logoText}>Nijivents</Text>
           </Animated.View>
 
           <View style={{ height: height / 3, justifyContent: 'center' }}>
@@ -292,6 +337,7 @@ class LoginPage extends Component {
 
               <Input
                 placeholder={translate('auth.email')}
+                autoCapitalize="none"
                 value={email}
                 onChangeText={(text) => this.onInputValueChange('email', text)}
                 style={styles.formElement}
@@ -326,4 +372,19 @@ class LoginPage extends Component {
   }
 }
 
-export default LoginPage;
+LoginPage.propTypes = {
+  currentUser: PropTypes.object,
+};
+
+LoginPage.defaultProps = {
+  currentUser: null,
+};
+
+const mapStateToProps = (state) => ({
+  currentUser: state.users.authUser,
+  isUserFetchFinished: state.users.isUserFetchFinished,
+});
+
+export default connect(mapStateToProps)(
+  LoginPage,
+);

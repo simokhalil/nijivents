@@ -65,7 +65,7 @@ const HeaderWavy = ({
   const logout = () => {
     try {
       auth.doSignOut();
-      Actions[AppConstants.ROUTES.welcome]({
+      Actions[AppConstants.ROUTES.login]({
         type: ActionConst.RESET,
       });
     } catch (error) {
