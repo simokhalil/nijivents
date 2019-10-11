@@ -10,7 +10,8 @@ import AddressSlide from '../../components/event-add/slides/Address';
 import AppTheme from '../../app/app.theme';
 import CategorySlide from '../../components/event-add/slides/Category';
 import HeaderWavy from '../../components/header/HeaderWavy';
-import PlanificationSlide from '../../components/event-add/slides/Planification';
+import PlanificationStartSlide from '../../components/event-add/slides/PlanificationStart';
+import PlanificationEndSlide from '../../components/event-add/slides/PlanificationEnd';
 import { translate } from '../../i18n/i18n';
 
 const { width } = Dimensions.get('window');
@@ -47,7 +48,7 @@ const EventAddPage = ({ theme }) => {
 
   return (
     <Block flex style={styles.container}>
-      <HeaderWavy title={translate('event.addAnEvent')} />
+      <HeaderWavy title={translate('event.addAnEvent')} transparent />
 
       <Swiper
         style={styles.wrapper}
@@ -64,11 +65,15 @@ const EventAddPage = ({ theme }) => {
           titleStyle={styles.slideTitle}
         />
 
-        <PlanificationSlide
-          startDate={startDate}
-          endDate={endDate}
-          onStartDateChange={setStartDate}
-          onEndDateChange={setEndDate}
+        <PlanificationStartSlide
+          onDateChanged={setStartDate}
+          onValidate={next}
+          style={styles.slide}
+          titleStyle={styles.slideTitle}
+        />
+
+        <PlanificationEndSlide
+          onDateChanged={setEndDate}
           onValidate={next}
           style={styles.slide}
           titleStyle={styles.slideTitle}

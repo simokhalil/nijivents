@@ -54,6 +54,8 @@ const AppRoutes = ({ dispatch }) => {
         <Scene key={AppConstants.ROUTES.login} component={LoginPage} initial />
         <Scene key={AppConstants.ROUTES.signup} component={SignupPage} />
 
+        <Scene key={AppConstants.ROUTES.eventAdd} component={EventAddPage} />
+
         <Tabs
           key="tabbar"
           backToInitial
@@ -70,7 +72,6 @@ const AppRoutes = ({ dispatch }) => {
             <Scene key={AppConstants.ROUTES.home} component={HomePage} />
 
             <Scene key={AppConstants.ROUTES.eventDetails} component={EventDetailsPage} />
-            <Scene key={AppConstants.ROUTES.eventAdd} component={EventAddPage} />
           </Stack>
 
           <Stack key={AppConstants.ROUTES.favoritesTab} title="Favoris" {...AppConfig.navbarProps}>

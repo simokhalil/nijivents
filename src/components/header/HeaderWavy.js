@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 
+import AppColors from '../../app/app.colors';
 import AppConstants from '../../app/app.constants';
 import LogoWhite from '../../assets/images/nijivents-logo_white.png';
 import PolygonsImage from '../../assets/images/polygons.png';
