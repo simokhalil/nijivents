@@ -1,14 +1,19 @@
 import React from 'react';
+import * as Font from 'expo-font';
 import { Provider } from 'react-redux';
-
 import { GalioProvider } from 'galio-framework';
 
 import AppRoutes from './src/app/app.routes';
+import AppTheme from './src/app/app.theme';
 import store from './src/redux/store';
 import { userDB, firebase } from './src/firebase';
 
 class App extends React.Component {
   componentDidMount() {
+    Font.loadAsync({
+      'museo-bold': require('./src/assets/fonts/MuseoBold.ttf'),
+    });
+
     this.userAuthStateChangedUnsubscribe = firebase.auth.onAuthStateChanged((authUser) => {
       console.log('AppContainer : Got authUser', authUser);
       if (authUser) {
@@ -66,7 +71,7 @@ class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <GalioProvider>
+        <GalioProvider theme={AppTheme}>
           <AppRoutes />
         </GalioProvider>
       </Provider>

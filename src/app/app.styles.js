@@ -17,6 +17,12 @@ const AppStyles = {
   navbarButton: {
     tintColor: AppColors.palette.primary,
   },
+  
+  pageTitle: {
+    fontFamily: 'museo-bold',
+    fontSize: 22,
+    padding: 20,
+  },
 };
 
 export default AppStyles;

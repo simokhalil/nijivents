@@ -9,10 +9,10 @@ import AppTheme from '../../app/app.theme';
 const styles = StyleSheet.create({
   button: {
     marginTop: 50,
-    borderTopLeftRadius: 35,
+    borderTopRightRadius: 35,
     height: 70,
     width: 130,
-    backgroundColor: AppTheme.COLORS.PRIMARY,
+    backgroundColor: AppTheme.COLORS.GREY,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
 });
 
 const NextButton = ({ label, onPress }) => (
-  <View style={{ position: 'absolute', bottom: 0, right: 0 }}>
+  <View style={{ position: 'absolute', bottom: 0, left: 0 }}>
     <TouchableHighlight
       onPress={onPress}
       style={styles.button}

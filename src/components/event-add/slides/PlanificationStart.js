@@ -5,6 +5,7 @@ import { ScrollView } from 'react-native';
 
 import DatePicker from '../../datetime/DatePicker';
 import NextButton from '../NextButton';
+import PreviousButton from '../PreviousButton';
 import { translate } from '../../../i18n/i18n';
 
 const PlanificationSlide = ({
@@ -12,6 +13,8 @@ const PlanificationSlide = ({
   onValidate,
   style,
   titleStyle,
+  onPrevious,
+  step,
 }) => (
   <ScrollView contentContainerStyle={style}>
     <Text h4 style={titleStyle}>{translate('event.whichDates')}</Text>
@@ -22,6 +25,13 @@ const PlanificationSlide = ({
       onDateChanged={onDateChanged}
     />
 
+    {!step.isFirst && (
+      <PreviousButton
+        label={translate('common.previous')}
+        onPress={onPrevious}
+      />
+    )}
+
     <NextButton
       label={translate('common.next')}
       onPress={onValidate}
@@ -31,7 +41,9 @@ const PlanificationSlide = ({
 
 PlanificationSlide.propTypes = {
   onDateChanged: PropTypes.func.isRequired,
+  onPrevious: PropTypes.func.isRequired,
   onValidate: PropTypes.func.isRequired,
+  step: PropTypes.object.isRequired,
   style: PropTypes.object,
   titleStyle: PropTypes.object,
 };

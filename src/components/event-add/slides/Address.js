@@ -13,6 +13,7 @@ import * as Permissions from 'expo-permissions';
 import AddressAutocomplete from '../AddressAutocomplete';
 import AppConstants from '../../../app/app.constants';
 import NextButton from '../NextButton';
+import PreviousButton from '../PreviousButton';
 import { translate } from '../../../i18n/i18n';
 
 const { width } = Dimensions.get('window');
@@ -59,7 +60,7 @@ class AddressSlide extends React.Component {
   render() {
     const { isAddressSearchModalVisible, userLocation, location } = this.state;
     const {
-      style, styles, theme, titleStyle, onChange, onValidate,
+      style, styles, theme, titleStyle, onChange, onValidate, onPrevious, step,
     } = this.props;
 
     return (
@@ -92,12 +93,21 @@ class AddressSlide extends React.Component {
             <Text>{`Latitude: ${location.details.geometry.location.lat}`}</Text>
             <Text>{`Longitude: ${location.details.geometry.location.lng}`}</Text>
 
-            <NextButton
-              label={translate('common.next')}
-              onPress={onValidate}
-            />
+
           </Block>
         )}
+
+        {!step.isFirst && (
+          <PreviousButton
+            label={translate('common.previous')}
+            onPress={onPrevious}
+          />
+        )}
+
+        <NextButton
+          label={translate('common.next')}
+          onPress={onValidate}
+        />
 
         {isAddressSearchModalVisible && (
           <AddressAutocomplete
@@ -115,7 +125,9 @@ class AddressSlide extends React.Component {
 
 AddressSlide.propTypes = {
   onChange: PropTypes.func.isRequired,
+  onPrevious: PropTypes.func.isRequired,
   onValidate: PropTypes.func.isRequired,
+  step: PropTypes.object.isRequired,
   style: PropTypes.object,
   styles: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,

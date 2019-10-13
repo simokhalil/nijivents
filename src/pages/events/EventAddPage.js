@@ -4,11 +4,13 @@ import Swiper from 'react-native-swiper';
 import {
   Block, Input, withGalio,
 } from 'galio-framework';
-import { Dimensions, View } from 'react-native';
+import { Dimensions, Text, View } from 'react-native';
 
 import AddressSlide from '../../components/event-add/slides/Address';
+import AppStyles from '../../app/app.styles';
 import AppTheme from '../../app/app.theme';
 import CategorySlide from '../../components/event-add/slides/Category';
+import Header from '../../components/header/Header';
 import HeaderWavy from '../../components/header/HeaderWavy';
 import PlanificationStartSlide from '../../components/event-add/slides/PlanificationStart';
 import PlanificationEndSlide from '../../components/event-add/slides/PlanificationEnd';
@@ -20,16 +22,20 @@ const styles = {
   container: {
     backgroundColor: AppTheme.COLORS.WHITE,
   },
+  title: {
+    ...AppStyles.pageTitle,
+  },
   slide: {
     width,
     flex: 1,
     backgroundColor: AppTheme.COLORS.WHITE,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    padding: 20,
     position: 'relative',
+    padding: 20,
   },
   slideTitle: {
+    fontFamily: 'museo-bold',
     marginBottom: 30,
   },
 };
@@ -37,18 +43,34 @@ const styles = {
 const EventAddPage = ({ theme }) => {
   const swiper = React.createRef();
 
+  const [currentStepIndex, setCurrentStepIndex] = React.useState(0);
   const [category, setCategory] = React.useState(1);
   const [startDate, setStartDate] = React.useState(null);
   const [endDate, setEndDate] = React.useState(null);
   const [address, setAddress] = React.useState(null);
 
+  const step = {
+    index: currentStepIndex,
+    isFirst: currentStepIndex === 0,
+    isLast: swiper.current ? currentStepIndex === swiper.current.props.children.length - 1 : false,
+  };
+
   const next = () => {
     swiper.current.scrollBy(1);
   };
 
+  const previous = () => {
+    swiper.current.scrollBy(-1);
+  };
+
+  console.log('swiper.current', swiper.current);
+  console.log('step', step);
+
   return (
     <Block flex style={styles.container}>
-      <HeaderWavy title={translate('event.addAnEvent')} transparent />
+      <Header />
+
+      <Text style={styles.title}>{translate('event.addAnEvent')}</Text>
 
       <Swiper
         style={styles.wrapper}
@@ -56,6 +78,7 @@ const EventAddPage = ({ theme }) => {
         loop={false}
         scrollEnabled={false}
         ref={swiper}
+        onIndexChanged={setCurrentStepIndex}
       >
         <CategorySlide
           value={category}
@@ -63,6 +86,8 @@ const EventAddPage = ({ theme }) => {
           onValidate={next}
           style={styles.slide}
           titleStyle={styles.slideTitle}
+          step={step}
+          onPrevious={previous}
         />
 
         <PlanificationStartSlide
@@ -70,6 +95,8 @@ const EventAddPage = ({ theme }) => {
           onValidate={next}
           style={styles.slide}
           titleStyle={styles.slideTitle}
+          step={step}
+          onPrevious={previous}
         />
 
         <PlanificationEndSlide
@@ -77,6 +104,8 @@ const EventAddPage = ({ theme }) => {
           onValidate={next}
           style={styles.slide}
           titleStyle={styles.slideTitle}
+          step={step}
+          onPrevious={previous}
         />
 
         <AddressSlide
@@ -85,6 +114,8 @@ const EventAddPage = ({ theme }) => {
           onValidate={next}
           style={styles.slide}
           titleStyle={styles.slideTitle}
+          step={step}
+          onPrevious={previous}
         />
 
         <View style={styles.slide2}>

@@ -18,4 +18,12 @@ export default {
     test: 'test',
     welcome: 'welcome',
   },
+
+  CATEGORIES: [
+    { id: 1, label: 'Déjeuner' },
+    { id: 2, label: 'Diner' },
+    { id: 3, label: 'Sortie Bar' },
+    { id: 4, label: 'Sortie Cinéma' },
+    { id: 5, label: 'Weekend voyage' },
+  ],
 };

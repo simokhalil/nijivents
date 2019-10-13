@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    height: 64,
+    height: 70,
   },
   tab: {
     flexDirection: 'row',

@@ -1,13 +1,17 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 
-import AppColors from '../../app/app.colors';
-import AppConstants from '../../app/app.constants';
-import HeaderWavy from '../../components/header/HeaderWavy';
+import AppStyles from '../../app/app.styles';
+import Header from '../../components/header/Header';
 
 const FavoritesPage = () => (
   <View>
-    <HeaderWavy title="Favoris" transparent style={{ backgroundColor: AppColors.tabs[AppConstants.ROUTES.favoritesTab] }} />
+    <Header transparent />
+
+    <Text style={AppStyles.pageTitle}>
+      Favoris
+    </Text>
+
     <Text>Favorites page</Text>
   </View>
 );

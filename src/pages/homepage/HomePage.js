@@ -4,12 +4,17 @@ import { Actions } from 'react-native-router-flux';
 import {
   Block, Button, Card, withGalio,
 } from 'galio-framework';
-import { Dimensions, ScrollView, TouchableOpacity } from 'react-native';
+import {
+  Dimensions, ScrollView, Text, TouchableOpacity, View,
+} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import AppConstants from '../../app/app.constants';
 import AppTheme from '../../app/app.theme';
+import Header from '../../components/header/Header';
 import HeaderWavy from '../../components/header/HeaderWavy';
+import HorizontalFilters from '../../components/common/HorizontalFilters';
+import AppStyles from '../../app/app.styles';
 
 const { width } = Dimensions.get('screen');
 
@@ -63,25 +68,16 @@ const styles = {
     width: 60,
     height: 60,
   },
+  cardFooter: {
+    backgroundColor: AppTheme.COLORS.WHITE,
+  },
+  cardFooterTitle: {
+    ...AppStyles.pageTitle,
+    fontSize: 16,
+  },
 };
 
 const cards = [
-  {
-    id: 1,
-    image: 'https://images.unsplash.com/photo-1494252713559-f26b4bf0b174?w=840&q=300',
-    avatar: 'http://i.pravatar.cc/100',
-    title: 'Christopher Moon',
-    caption: '138 minutes ago',
-    location: 'Los Angeles, CA',
-  },
-  {
-    id: 2,
-    image: 'https://images.unsplash.com/photo-1503631285924-e1544dce8b28?&w=1200&h=1600&fit=crop&crop=entropy&q=300',
-    avatar: 'http://i.pravatar.cc/100',
-    title: 'Christopher Moon',
-    caption: '138 minutes ago',
-    location: 'Los Angeles, CA',
-  },
   {
     id: 3,
     image: 'https://images.unsplash.com/photo-1497802176320-541c8e8de98d?&w=1600&h=900&fit=crop&crop=entropy&q=300',
@@ -89,7 +85,7 @@ const cards = [
     title: 'Christopher Moon',
     caption: '138 minutes ago',
     location: 'Los Angeles, CA',
-    padded: true,
+    padded: false,
   },
   {
     id: 4,
@@ -116,11 +112,27 @@ const cards = [
     caption: '138 minutes ago',
     full: true,
   },
+  {
+    id: 1,
+    image: 'https://images.unsplash.com/photo-1494252713559-f26b4bf0b174?w=840&q=300',
+    avatar: 'http://i.pravatar.cc/100',
+    title: 'Christopher Moon',
+    caption: '138 minutes ago',
+    location: 'Los Angeles, CA',
+  },
+  {
+    id: 2,
+    image: 'https://images.unsplash.com/photo-1503631285924-e1544dce8b28?&w=1200&h=1600&fit=crop&crop=entropy&q=300',
+    avatar: 'http://i.pravatar.cc/100',
+    title: 'Christopher Moon',
+    caption: '138 minutes ago',
+    location: 'Los Angeles, CA',
+  },
 ];
 
 const DashboardPage = ({ theme }) => (
   <Block flex style={styles.container}>
-    <HeaderWavy title="Dashboard">
+    <Header transparent withGreeting>
       <Button
         onPress={() => {}}
         iconFamily="AntDesign"
@@ -134,9 +146,16 @@ const DashboardPage = ({ theme }) => (
         }}
         style={{ alignSelf: 'flex-start', marginTop: 20 }}
       />
-    </HeaderWavy>
+    </Header>
 
     <ScrollView contentContainerStyle={styles.cards}>
+      <Block flex space="between">
+
+        <HorizontalFilters
+          items={AppConstants.CATEGORIES}
+        />
+      </Block>
+
       <Block flex space="between">
         {cards.map((card, id) => (
           <TouchableOpacity key={card.image} style={styles.cardContainer} onPress={() => Actions.eventDetails({ event: card })}>
@@ -160,6 +179,10 @@ const DashboardPage = ({ theme }) => (
               footerStyle={card.full ? styles.full : null}
             >
               {card.full ? <LinearGradient colors={['transparent', 'rgba(0,0,0, 0.8)']} style={styles.gradient} /> : null}
+
+              <View style={styles.cardFooter}>
+                <Text style={styles.cardFooterTitle}>{card.title}</Text>
+              </View>
             </Card>
           </TouchableOpacity>
         ))}
